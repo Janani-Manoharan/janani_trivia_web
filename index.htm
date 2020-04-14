@@ -3,10 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Trivia Game!!!</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Trivia Application</h1>
+    <div class="full-page">
+        <div class="main-page">  
+            <h1 class ="header">Play Trivia Game !!!</h1>      
+            <div class="question-page">
+                <div class="number"> <p class="qno">  1/10  </p> </div>            
+                <div class="question-box">
+                <p class="question-title">What is the capital of Canada?</p>
+                </div>
+            </div>
+            <div class="bottom-page">
+                <div class="reset-page">
+                    
+                        <svg class="icon-reload" id="reload-btn" viewBox="0 0 24 24">
+                            <path fill="currentColor" 
+                                d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2M18 11H13L14.81 9.19A3.94 3.94 0 0 0 12 8A4 4 0 1 0 15.86 13H17.91A6 6 0 1 1 12 6A5.91 5.91 0 0 1 16.22 7.78L18 6Z" />
+                        </svg>
+            
+                </div>
+                <div class="options-page1">
+                
+                    <div class="option">
+                        <p class="answer">Toronto</p>
+                    </div>
+                    <div class="option">
+                        <p class="answer">Ottawa</p>
+                    </div>
+                </div>
+                <div class="options-page2">
+                    <div class="option">
+                        <p class="answer">Calgary</p>
+                    </div>
+                    <div class="option">
+                        <p class="answer">Sudbury</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="side-page">
+            <div class="users-page">
+                <div class="user-pic">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="70" viewBox="0 0 24 24" width="70"  fill="currentColor">
+                        <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </div>
+                <div class="user-details">
+                    <p id="myName">UserName</p> 
+                    <p id="myScore">0/10</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="del-btn-user" height="34" viewBox="0 0 24 24" width="34"><path d="M0 0h24v24H0z" fill="currentColor"/><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                </div>
+            </div>
+
+            
+            <div class="friends-page">
+                <template id="users-template">
+                    <div class="classtemplate">
+                        <div class="user-pic">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="70" viewBox="0 0 24 24" width="70"  fill="currentColor">
+                                <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="friend-details">
+                            <p class="friend-name"></p>
+                            <p class="friend-score">0/0</p>
+                        </div>
+                        
+                    </div>
+                </template>
+            </div>
+            <div class="adduser-page">
+                <svg xmlns="http://www.w3.org/2000/svg" id="add-user-btn"  height="54" viewBox="0 0 24 24" width="54" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" id="del-btn-template" height="54" viewBox="0 0 24 24" width="54" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            </div>
+        </div>   
+    </div> 
+    <script>
+
+    //Main Userpage action and username change
+    let uname = localStorage.getItem("uname")
+    
+    document.getElementById("myName").addEventListener("click",()=>{
+    let name = prompt("Enter your name?");
+    localStorage.setItem("uname",name);
+    addMyName(name);    
+    });
+
+    function addMyName(uname) {
+    const template = document.querySelector(".users-page");
+    template.querySelector("#myName").innerHTML = uname;
+    }
+
+    //friends template Adding new user on click of Add button
+    //Creating an array for multiplayers;
+
+    let nameArray = localStorage.getItem("fnames");
+    if(nameArray == null){
+      nameArray = new Array();
+    }
+    else{
+      nameArray = JSON.parse(nameArray);
+    }
+    for (key in nameArray){
+      addUser(nameArray[key]);
+    } 
+   
+    document.getElementById("add-user-btn").addEventListener("click",()=>{
+    let name = prompt("Enter your name?");
+    nameArray.push(name);
+    localStorage.setItem("fnames",JSON.stringify(nameArray));
+    addUser(name);
+     
+    });
+
+    function addUser(name) {
+    const template = document.querySelector("#users-template");
+    let newFriend = document.importNode(template.content, true);
+    newFriend.querySelector(".friend-name").innerHTML = name;
+    document.querySelector(".friends-page").appendChild(newFriend);
+
+    }
+
+    //Side page template User and Friends delete Buttons Action
+
+    document.getElementById("del-btn-template").addEventListener("click",()=>{
+    localStorage.removeItem("fnames");
+    window.location.reload();
+    });
+
+    document.getElementById("del-btn-user").addEventListener("click",()=>{
+    localStorage.removeItem("uname");
+    window.location.reload();
+    });
+
+    document.getElementById("reload-btn").addEventListener("click",()=>{
+            document.querySelector(".question-page").animate(
+                [
+                    {
+                        transform: 'translateX(-1000px)'
+                    },
+                   
+                    {
+                        transform: 'translateX(-1000px)'
+                        
+                    }
+                ], {
+                    duration: 1000
+                
+                    
+                });
+        });
+
+
+    </script>
 </body>
 </html>
