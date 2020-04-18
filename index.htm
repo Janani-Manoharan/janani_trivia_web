@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia Game!!!</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
 </head>
 <body>
     <div class="full-page">
@@ -87,19 +88,28 @@
         </div>   
     </div> 
     <script>
-
+    let peer;
+    let conn;
+    navigator.serviceWorker.register("/sw.js")
     //Main Userpage action and username change
     let uname = localStorage.getItem("uname")
     
     document.getElementById("myName").addEventListener("click",()=>{
-    let name = prompt("Enter your name?");
-    localStorage.setItem("uname",name);
-    addMyName(name);    
+        let name = prompt("Enter your name?");
+        localStorage.setItem("uname",name);
+        peer = new Peer(name+"123awes"); 
+            peer.on('connection', function(conn) {
+                conn.on('data', function(data){
+                    // Will print 'hi!'
+                    console.log(data);
+                });
+            });
+        addMyName(name);    
     });
 
     function addMyName(uname) {
-    const template = document.querySelector(".users-page");
-    template.querySelector("#myName").innerHTML = uname;
+        const template = document.querySelector(".users-page");
+        template.querySelector("#myName").innerHTML = uname;
     }
 
     //friends template Adding new user on click of Add button
@@ -120,6 +130,12 @@
     let name = prompt("Enter your name?");
     nameArray.push(name);
     localStorage.setItem("fnames",JSON.stringify(nameArray));
+    conn = peer.connect(name+"123awes");
+    // on open will be launch when you successfully connect to PeerServer
+    conn.on('open', function(){
+    // here you have conn.id
+    conn.send('Connected to '+name);
+    });
     addUser(name);
      
     });
